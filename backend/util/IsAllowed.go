@@ -27,6 +27,7 @@ func IsAllowed(c *gin.Context,params CarInfo){
 	day := getDay(params)
 	inputTimeStr := params.Time
 	LastNumberSlice := Slice(c,params)
+	var move bool
 
 
 	inputTime,err := time.Parse("15:04:05", inputTimeStr)
@@ -35,9 +36,9 @@ func IsAllowed(c *gin.Context,params CarInfo){
 		return
 	}
 	morningStart, _ := time.Parse("15:04", "07:30")
-	morningEnd, _ := time.Parse("15:04", "09:30")
+	morningEnd, _   := time.Parse("15:04", "09:30")
 	eveningStart, _ := time.Parse("15:04", "16:30")
-	eveningEnd, _ := time.Parse("15:04", "19:30")
+	eveningEnd, _   := time.Parse("15:04", "19:30")
 
 	// conditional checks wether we are on a pico y placa hour or not
 	if (inputTime.After(morningStart) && inputTime.Before(morningEnd)) ||
@@ -51,14 +52,22 @@ func IsAllowed(c *gin.Context,params CarInfo){
 				for _, allowedNumber := range allowednumbers {
 					if(LastNumberSlice == allowedNumber ){
 						fmt.Println("Cannot move")
-						c.JSON(200, gin.H{"move": "NO"})
+						move = false;
+						break
 					}
 				}
+			} else if(LastNumberSlice != number){
+				move = true;
+				break
 			}
+
 		}}
 	} else {
 		fmt.Println("Time is not within the specified ranges.")
+		move = true;
 	}
+
+	c.JSON(200, gin.H{"move": move})
 
 
 }
