@@ -40,6 +40,17 @@ func GetInfo(c *gin.Context){
         return
     }
 			day := getDay(info)
+			if(day == "Saturday" || day == "Sunday"){
+				c.JSON(200, gin.H{"allowed": true})
+				c.JSON(200, gin.H{"restriction": false})
+			} else
+			{
+		    c.JSON(200, gin.H{"restriction": true})
+			number := Slice(c,info);
+			c.JSON(200, gin.H{"day": number})
+
+
+			}
 			c.JSON(200, gin.H{"day": day})
     
 }
