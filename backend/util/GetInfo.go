@@ -1,46 +1,38 @@
 package util
 
 import (
-	"fmt"
+	//"fmt"
 	"time"
+	"github.com/gin-gonic/gin"
 )
 
 type CarInfo struct{
-	Number string `json:"phone"`
-	DateTime
+	Number string `json:"number"`
+	DateTime `json:"datetime"`
 }
 
 type DateTime struct{
-	Date date
+	Date DateYear
 	Time time.Time
 
 }
 
-type date struct {
+type DateYear struct {
 	Year int
 	Month int
 	Day int
   }
 
-func GetInfo(){
-info := CarInfo{
-Number: "4450",
-DateTime: DateTime{
-	Date:date{
-		Year: 2023,
-		Month: 2,
-		Day: 25,
-	},
-	Time:time.Now(),
-},
-}
-fmt.Println(info.Date)
-dt := DateTime{
-	Time: time.Date(2023, 2, 25, 0, 0, 0, 0, time.UTC),
-  }
-  
+func GetInfo(c *gin.Context){
+	var info CarInfo
+	var datetime DateTime
+	var dateyear DateYear
 
-  day := dt.Time.Weekday()
-  
-  fmt.Println(day)
+	if err := c.ShouldBindJSON(&info); err != nil{
+	c.JSON(400,gin.H{"error": err.Error()})
+	}
+
+	day := getDay(info,datetime,dateyear)
+	c.JSON(200,gin.H{"day":day})
+    
 }

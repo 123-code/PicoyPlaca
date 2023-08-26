@@ -19,9 +19,9 @@ func main() {
 		c.String(200, "hello")
 	})
     
-	router.GET("/info", func(c *gin.Context) {
+	router.POST("/info", func(c *gin.Context) {
 
-		util.GetInfo()
+		util.GetInfo(c)
 		res := "hello"
 		c.String(200,res )
 	  
