@@ -22,8 +22,8 @@ func main() {
 	router.POST("/info", func(c *gin.Context) {
 
 		util.GetInfo(c)
-		res := "hello"
-		c.String(200,res )
+	
+		
 	  
 	  })
 

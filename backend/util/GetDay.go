@@ -1,28 +1,20 @@
 package util
 
 import (
-	"fmt"
-	"time"
+    "fmt"
+    "time"
 )
-// gets day of the week input date is in 
-func getDay(params CarInfo,datetime DateTime,calendardate DateYear)string{
-	info := CarInfo{
-	Number: params.Number,
-	DateTime: DateTime{
-	Date:DateYear{
-	Year: calendardate.Year,
-	Month: calendardate.Month,
-	Day: calendardate.Day,
-			     },
-	Time:time.Now(),
-		},
-		}
 
-fmt.Println(info.Date)
-dt := DateTime{
-//Time: time.Date(2023, 2, 25, 0, 0, 0, 0, time.UTC),
-}
-day := dt.Time.Weekday()
-  
-return day.String()
+func getDay(params CarInfo) string {
+	dateLayout := "2006-01-02" 
+    timeLayout := "15:04:05" 
+
+	parsedDate, _ := time.Parse(dateLayout, params.Date)
+    parsedTime, _ := time.Parse(timeLayout, params.Time)
+
+	dateTime := time.Date(parsedDate.Year(), parsedDate.Month(), parsedDate.Day(), parsedTime.Hour(), parsedTime.Minute(), parsedTime.Second(), 0, time.UTC)
+	fmt.Println(dateTime)
+	day := dateTime.Weekday()
+    return day.String()
+	
 }
