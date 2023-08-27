@@ -45,7 +45,7 @@ func GetInfo(c *gin.Context){
 				c.JSON(200, gin.H{"restriction": false})
 			} else
 			{
-		    c.JSON(200, gin.H{"restriction": true})
+		   
 			//number := Slice(c,info);
 
 			IsAllowed(c,info)
@@ -53,6 +53,6 @@ func GetInfo(c *gin.Context){
 
 
 			}
-			c.JSON(200, gin.H{"day": day})
+			
     
 }

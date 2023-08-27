@@ -3,9 +3,12 @@ import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
-import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import InputTextField from './TextField'
+import IconLabelButtons from './SendButton';
+import TimeSelector from './TimeSelector';
+import DateSelect from './DateSelector';
+
 const bull = (
   <Box
     component="span"
@@ -23,10 +26,21 @@ export default function BasicCard() {
         <Typography sx={{ mb: 1.5 }} color="text.secondary">
           fill in the form, check wether you can circulate.
         </Typography>
+        <Typography sx={{ mb: 1.5 }} color="text.secondary">
+          License Plate:
+        </Typography>
         <InputTextField/>
+        <Typography sx={{ mb: 1.5 }} color="text.secondary">
+         Date:
+        </Typography>
+        <DateSelect/>
+        <Typography sx={{ mb: 1.5 }} color="text.secondary">
+          Time:
+        </Typography>
+        <TimeSelector/>
       </CardContent>
       <CardActions>
-        <Button size="small">Learn More</Button>
+      <IconLabelButtons/> 
       </CardActions>
     </Card>
   );
