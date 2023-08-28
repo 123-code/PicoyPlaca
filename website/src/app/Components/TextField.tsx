@@ -1,7 +1,14 @@
+"use client"
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
-
+import { useDispatch } from 'react-redux'
+import { updateTextField } from '../redux/TextField'
 export default function InputTextField() {
+
+  const dispatch = useDispatch();
+  function handleChange(e) {
+    dispatch(updateTextField(e.target.value)) 
+  }
     return (
       <Box
         component="form"
@@ -11,7 +18,7 @@ export default function InputTextField() {
         noValidate
         autoComplete="off"
       >
-        <TextField id="outlined-basic" label="full License-Number" variant="outlined" />
+        <TextField onChange={handleChange} id="outlined-basic" label="full License-Number" variant="outlined" />
   
       </Box>
     );

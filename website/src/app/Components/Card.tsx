@@ -4,10 +4,16 @@ import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
+import { useSelector } from 'react-redux'
 import InputTextField from './TextField'
-import IconLabelButtons from './SendButton';
+import SendButton from './SendButton';
 import TimeSelector from './TimeSelector';
 import DateSelect from './DateSelector';
+
+
+interface RootState {
+  TextField: string;
+}
 
 const bull = (
   <Box
@@ -18,8 +24,10 @@ const bull = (
   </Box>
 );
 
+
 export default function BasicCard() {
-  return (
+  const textField = useSelector((state: RootState) => state.TextField);
+  return ( 
     <Card sx={{ minWidth: 275 }}>
       <CardContent>
       <Typography variant="h2">Pico y placa Detector</Typography>
@@ -40,7 +48,8 @@ export default function BasicCard() {
         <TimeSelector/>
       </CardContent>
       <CardActions>
-      <IconLabelButtons/> 
+      <SendButton/> 
+      <div>{textField}</div>
       </CardActions>
     </Card>
   );

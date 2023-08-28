@@ -8,7 +8,7 @@ import Stack from '@mui/material/Stack';
 import Sender from './Sender';
 import axios from 'axios';
 
-export default function IconLabelButtons() {
+export default function SendButton() {
     const [cancirculate,setcancirculate] = useState(false);
     const handleSend = () => {
         const info = {
