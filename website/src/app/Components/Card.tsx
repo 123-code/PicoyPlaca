@@ -53,7 +53,7 @@ export default function BasicCard() {
         <TimeSelector/>
       </CardContent>
       <CardActions>
-      <SendButton/> 
+      <SendButton info={{ number: textField, date: selectedDate, time: selectedTime }} />
 
       <div><h1>placa:</h1>{textField}</div>
       <div><h1>fecha:</h1>{selectedDate}</div>
