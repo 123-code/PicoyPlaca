@@ -19,7 +19,7 @@ export default function TimeSelector() {
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
       <DemoContainer components={['TimePicker']}>
-      <TextField onChange={handleChange} id="outlined-basic" label="time separated by : " variant="outlined" />
+      <TextField onChange={handleChange} id="outlined-basic" label="time ex(12:35:00) " variant="outlined" />
       </DemoContainer>
     </LocalizationProvider>
   );

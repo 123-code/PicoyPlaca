@@ -24,7 +24,7 @@ func IsAllowed(c *gin.Context,params CarInfo){
 		"Thursday":  {"7", "8"},
 		"Friday":    {"9", "0"},
 	}
-	day := getDay(params)
+	day := getDay(c,params)
 	inputTimeStr := params.Time
 	LastNumberSlice := Slice(c,params)
 	var move bool
@@ -45,6 +45,7 @@ func IsAllowed(c *gin.Context,params CarInfo){
 		(inputTime.After(eveningStart) && inputTime.Before(eveningEnd)) {
 		fmt.Println("Time is within the specified ranges.")
 		for _, numbers := range DaysOfWeek {
+			
 			for _, number := range numbers {
 			if(LastNumberSlice == number){
 
@@ -53,7 +54,7 @@ func IsAllowed(c *gin.Context,params CarInfo){
 					if(LastNumberSlice == allowedNumber ){
 						fmt.Println("Cannot move")
 						move = false;
-						break
+						
 					}
 
 					if(LastNumberSlice != number){
@@ -64,10 +65,18 @@ func IsAllowed(c *gin.Context,params CarInfo){
 			
 
 					}}
+					restrictedNumbers := DaysOfWeek[day]
+
+					for _, number := range restrictedNumbers {
+					  if LastNumberSlice == number {
+						move = false
+						break
+					  }else{move=true}
+					}
 				} else {
 				fmt.Println("Time is not within the specified ranges.")
 				move = true;
-				}
+				}; 
 
 				c.JSON(200, gin.H{"move": move})
 

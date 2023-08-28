@@ -1,7 +1,7 @@
 package util
 
 import (
-	//"fmt"
+	"fmt"
 	
 	"time"
 
@@ -39,9 +39,10 @@ func GetInfo(c *gin.Context){
         c.JSON(400, gin.H{"error": err.Error()})
         return
     }
-			day := getDay(info)
+			day := getDay(c,info)
 			if(day == "Saturday" || day == "Sunday"){
-				c.JSON(200, gin.H{"allowed": true})
+				c.JSON(200, gin.H{"move": true})
+				fmt.Println("llego")
 				c.JSON(200, gin.H{"restriction": false})
 			} else
 			{

@@ -26,7 +26,7 @@ export default function DateSelect() {
         noValidate
         autoComplete="off"
       >
-        <TextField onChange={handleChange} id="outlined-basic" label="date" variant="outlined" />
+        <TextField onChange={handleChange} id="outlined-basic" label="date ex(2001-09-14)" variant="outlined" />
   
       </Box>
   

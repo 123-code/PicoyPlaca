@@ -27,7 +27,7 @@ export default function InputTextField() {
         noValidate
         autoComplete="off"
       >
-        <TextField inputProps={{ maxLength: 7 }} onChange={handleChange} id="outlined-basic" label="full License-Number" variant="outlined" />
+        <TextField inputProps={{ maxLength: 7 }} onChange={handleChange} id="outlined-basic" label="full License-Number ex(pqb126)" variant="outlined" />
   
       </Box>
     );

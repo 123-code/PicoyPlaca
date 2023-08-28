@@ -8,21 +8,24 @@ import TrafficLight from './ShowCanCirculate'
 
 
 interface SendButtonProps {
-  info: any; // Accept any type for the info object
+  info: any; 
 }
 
 
 
 export default function SendButton({ info }: SendButtonProps) {
   const [cancirculate, setCanCirculate] = useState<boolean | undefined>(false);
+  const [restriction, setRestriction] = useState<boolean>();
 
   const handleSend = () => {
     console.log("Sending:", info);
     axios.post('http://localhost:8080/info', info)
       .then(response => {
-        const { move } = response.data;
+        const { move, restriction } = response.data;
         console.log("move"+ move)
+        console.log("restriction"+ restriction)
         setCanCirculate(move);
+        setRestriction(restriction);
       })
       .catch(error => {
         if(error.response && error.response?.data?.message ===  "Número Inválido"){
@@ -41,9 +44,14 @@ export default function SendButton({ info }: SendButtonProps) {
         Send
       </Button>
 
-      {cancirculate === undefined && <p>Error</p>}
-      {cancirculate === true ? <div>your car can circulate!</div> : <div>your car cannot circulate :|</div>}
-      <TrafficLight on={cancirculate}/>
+      {cancirculate===undefined && <div>your car can circulate! <TrafficLight on={true}/></div>}
+      {cancirculate === true  &&  <div>your car can circulate! <TrafficLight on={true}/></div>}
+      {cancirculate === false && <div> you cannot circulate at this time :|
+      <TrafficLight on={false}/>
+      </div>}
+      
+   
+     
     </Stack>
     
   );
