@@ -55,11 +55,13 @@ func IsAllowed(c *gin.Context,params CarInfo){
 						move = false;
 						break
 					}
-				}
-			} else if(LastNumberSlice != number){
+				}}
+				/*
+			 else if(LastNumberSlice != number){
 				move = true;
 				break
 			}
+			*/
 
 		}}
 	} else {
