@@ -15,9 +15,9 @@ to run the Backend:
 
 3. cd backend
 
-4. to add dependencies run:  go mod download
+4. to add dependencies run:  go mod download on the backend root 
 
-5. to run th server, run: go run main.go.
+5. to run the server, run: go run main.go.
 
 6. to make a test request, the following format is required: 
 
