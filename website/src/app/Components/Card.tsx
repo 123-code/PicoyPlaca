@@ -5,14 +5,17 @@ import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import { useSelector } from 'react-redux'
+import { format } from 'date-fns';
 import InputTextField from './TextField'
 import SendButton from './SendButton';
 import TimeSelector from './TimeSelector';
 import DateSelect from './DateSelector';
 
-
+ 
 interface RootState {
   TextField: string;
+  DatePicker: string;
+  TimePicker:string;
 }
 
 const bull = (
@@ -27,6 +30,8 @@ const bull = (
 
 export default function BasicCard() {
   const textField = useSelector((state: RootState) => state.TextField);
+  const selectedDate = useSelector((state: RootState) => state.DatePicker);
+  const selectedTime = useSelector((state: RootState) => state.TimePicker);
   return ( 
     <Card sx={{ minWidth: 275 }}>
       <CardContent>
@@ -49,7 +54,10 @@ export default function BasicCard() {
       </CardContent>
       <CardActions>
       <SendButton/> 
-      <div>{textField}</div>
+
+      <div><h1>placa:</h1>{textField}</div>
+      <div><h1>fecha:</h1>{selectedDate}</div>
+     <div><h1>Hora:</h1>{selectedTime}</div>
       </CardActions>
     </Card>
   );

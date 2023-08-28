@@ -8,7 +8,7 @@ import Stack from '@mui/material/Stack';
 import Sender from './Sender';
 import axios from 'axios';
 
-export default function SendButton() {
+export default function SendButton({}) {
     const [cancirculate,setcancirculate] = useState(false);
     const handleSend = () => {
         const info = {
@@ -33,9 +33,7 @@ export default function SendButton() {
       <Button onClick={()=>handleSend()} variant="outlined" endIcon={<SendIcon />}>
         Send 
       </Button>
-      <Button variant="outlined" startIcon={<DeleteIcon />}> 
-        clear
-      </Button>
+
       {
   cancirculate === undefined
     ? <p>Loading...</p>

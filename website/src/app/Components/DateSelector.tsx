@@ -1,15 +1,34 @@
+"use client"
 import * as React from 'react';
-import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+import Box from '@mui/material/Box';
+import TextField from '@mui/material/TextField';
+import { useDispatch } from 'react-redux'
+import dayjs, { Dayjs } from 'dayjs';
+import { updateDatePicker } from '../redux/DatePicker'
+
 
 export default function DateSelect() {
+
+  const dispatch = useDispatch();
+
+  function handleChange(e:any) {
+   
+    dispatch(updateDatePicker(e.target.value));
+  }
+
   return (
-    <LocalizationProvider dateAdapter={AdapterDayjs}>
-      <DemoContainer components={['DatePicker']}>
-        <DatePicker label="pick a date" />
-      </DemoContainer>
-    </LocalizationProvider>
+  
+      <Box
+        component="form"
+        sx={{
+          '& > :not(style)': { m: 1, width: '25ch' },
+        }}
+        noValidate
+        autoComplete="off"
+      >
+        <TextField onChange={handleChange} id="outlined-basic" label="date" variant="outlined" />
+  
+      </Box>
+  
   );
 }

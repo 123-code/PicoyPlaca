@@ -6,7 +6,7 @@ import { updateTextField } from '../redux/TextField'
 export default function InputTextField() {
 
   const dispatch = useDispatch();
-  function handleChange(e) {
+  function handleChange(e:any) {
     dispatch(updateTextField(e.target.value)) 
   }
     return (
