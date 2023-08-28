@@ -10,14 +10,14 @@ import InputTextField from './TextField'
 import SendButton from './SendButton';
 import TimeSelector from './TimeSelector';
 import DateSelect from './DateSelector';
-
+import TrafficLight from './ShowCanCirculate'
  
 interface RootState {
   TextField: string;
   DatePicker: string;
   TimePicker:string;
 }
-
+// <TrafficLight on={false}/>
 const bull = (
   <Box
     component="span"
@@ -59,6 +59,7 @@ export default function BasicCard() {
       <div><h1>fecha:</h1>{selectedDate}</div>
      <div><h1>Hora:</h1>{selectedTime}</div>
       </CardActions>
+     
     </Card>
   );
 }

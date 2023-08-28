@@ -4,11 +4,20 @@ import TextField from '@mui/material/TextField';
 import { useDispatch } from 'react-redux'
 import { updateTextField } from '../redux/TextField'
 export default function InputTextField() {
-
+  
   const dispatch = useDispatch();
   function handleChange(e:any) {
-    dispatch(updateTextField(e.target.value)) 
-  }
+    const value = e.target.value;
+  
+    
+    const valid = /^[a-zA-Z]{3}\d{3,4}$/.test(value); 
+  
+    if (valid) {
+      dispatch(updateTextField(value))
+    } else {
+      console.log("invalid")
+    }
+  } 
     return (
       <Box
         component="form"
@@ -18,7 +27,7 @@ export default function InputTextField() {
         noValidate
         autoComplete="off"
       >
-        <TextField onChange={handleChange} id="outlined-basic" label="full License-Number" variant="outlined" />
+        <TextField inputProps={{ maxLength: 7 }} onChange={handleChange} id="outlined-basic" label="full License-Number" variant="outlined" />
   
       </Box>
     );

@@ -55,21 +55,21 @@ func IsAllowed(c *gin.Context,params CarInfo){
 						move = false;
 						break
 					}
-				}}
-				/*
-			 else if(LastNumberSlice != number){
+
+					if(LastNumberSlice != number){
+						move = true;
+						break
+						}
+				}}; 
+			
+
+					}}
+				} else {
+				fmt.Println("Time is not within the specified ranges.")
 				move = true;
-				break
-			}
-			*/
+				}
 
-		}}
-	} else {
-		fmt.Println("Time is not within the specified ranges.")
-		move = true;
-	}
-
-	c.JSON(200, gin.H{"move": move})
+				c.JSON(200, gin.H{"move": move})
 
 
 }
